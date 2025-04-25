@@ -1,0 +1,19 @@
+.main-div{
+    height:90vh;
+    background-color:#ddd;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+.table-div{
+    
+}
+
+.add-user{
+}
+.table-head {
+
+}
+.table-body  {
+    color:#fff;
+}
