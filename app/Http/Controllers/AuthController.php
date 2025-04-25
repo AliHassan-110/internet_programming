@@ -39,7 +39,7 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(){
+    public function signOut(){
         try {
             //Delete All Tokens Of Logged In User
             if(!auth('sanctum')->user()){
@@ -53,4 +53,5 @@ class AuthController extends Controller
             return response()->json(['status' => false, 'response_code' => 400, 'message' => $e->getMessage(), 'line_number' => $e->getLine()],400);
         }
     }
+
 }

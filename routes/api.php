@@ -20,16 +20,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/get-events', [EventController::class, 'getEvents']);
+Route::post('/filter-events', [EventController::class, 'filterEvents']);
+Route::post('/search-events', [EventController::class, 'searchEvents']);
+Route::get('/event-types', [EventController::class, 'getEventTypes']);
+Route::post('/search-events-by-type', [EventController::class, 'searchByType']);
+Route::post('/search-events-by-date', [EventController::class, 'searchByDate']);
 
-Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-
+Route::middleware(['auth:sanctum', 'admin.only'])->group(function () {
     //Events
-    Route::post('/events', [EventController::class, 'createEvent']);
-    Route::get('/events', [EventController::class, 'getEvents']);
-    Route::put('/events/{id}', [EventController::class, 'updateEvent']);
-    Route::delete('/events/{id}', [EventController::class, 'deleteEvent']);
+    Route::post('/create-event', [EventController::class, 'createEvent']);
+    Route::put('/edit-event/{id}', [EventController::class, 'updateEvent']);
+    Route::delete('/delete-event/{id}', [EventController::class, 'deleteEvent']);
 
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/sign-out', [AuthController::class, 'logout'])->name('sign_out');
 
 });
